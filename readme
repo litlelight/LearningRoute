@@ -1,0 +1,148 @@
+# SRL-AGNN: Attention-Enhanced Graph Neural Networks for Multi-Task Learning in Educational Analytics
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+![Python Version](https://img.shields.io/badge/python-3.8-blue.svg)
+![PyTorch Version](https://img.shields.io/badge/pytorch-1.9.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
+这个仓库包含了论文《Attention-Enhanced Graph Neural Networks for Multi-Task Learning in Educational Analytics》的完整代码实现。该模型结合自我调节学习理论(SRL)和图神经网络(GNN)，用于教育数据挖掘中的多任务学习。
+
+## 模型架构
+
+SRL-AGNN的主要特点：
+- 基于自我调节学习理论的多阶段特征提取
+- 动态权重自适应的多任务学习框架
+- 融合注意力机制的图神经网络结构
+
+<div align=center>
+<img src="assets/model_architecture.png" width="600">
+</div>
+
+## 环境要求
+
+```bash
+Python 3.8
+PyTorch 1.9.0
+PyTorch Geometric 2.0.3
+pandas 1.3.0
+scikit-learn 0.24.2
+numpy 1.21.0
+```
+
+## 安装
+
+1. 克隆仓库：
+```bash
+git clone https://github.com/username/SRL-AGNN.git
+cd SRL-AGNN
+```
+
+2. 创建并激活虚拟环境：
+```bash
+conda create -n srlagnn python=3.8
+conda activate srlagnn
+```
+
+3. 安装依赖：
+```bash
+pip install -r requirements.txt
+```
+
+## 数据集
+
+实验使用了Kaggle的Student Performance数据集，包含6607名学生的学习表现数据。数据集包括：
+- 19个特征变量
+- 1个目标变量（考试成绩）
+- 数值型和类别型特征
+
+数据集可以从以下位置获取：
+- [Kaggle链接](#)
+- 或使用我们预处理好的版本：`data/processed/student_performance.csv`
+
+## 使用方法
+
+1. 数据预处理：
+```bash
+python preprocess.py --input_path data/raw --output_path data/processed
+```
+
+2. 训练模型：
+```bash
+python train.py --config configs/default.yaml
+```
+
+3. 评估模型：
+```bash
+python evaluate.py --model_path checkpoints/best_model.pth --test_data data/processed/test.csv
+```
+
+## 主要实验结果
+
+| 模型 | RMSE | MAE | R² | F1-Score |
+|------|------|-----|-------|-----------|
+| SRL-AGNN (Ours) | 1.75 | 0.58 | 0.765 | 0.460 |
+| Baseline 1 | 1.89 | 0.63 | 0.704 | 0.335 |
+| Baseline 2 | 2.20 | 0.88 | 0.659 | 0.378 |
+
+## 目录结构
+
+```
+SRL-AGNN/
+│
+├── configs/                    # 配置文件
+├── data/                      # 数据集
+│   ├── raw/                   # 原始数据
+│   └── processed/             # 预处理后的数据
+├── models/                    # 模型实现
+│   ├── gnn.py                # GNN模块
+│   ├── attention.py          # 注意力机制
+│   └── srl_agnn.py           # 主模型
+├── utils/                    # 工具函数
+├── scripts/                  # 实验脚本
+├── notebooks/                # 分析笔记本
+├── tests/                    # 测试代码
+└── requirements.txt          # 依赖包
+```
+
+## 引用
+
+如果您使用了本研究的代码或结果，请引用我们的论文：
+
+```bibtex
+@article{xxx2024srl,
+  title={Attention-Enhanced Graph Neural Networks for Multi-Task Learning in Educational Analytics},
+  author={XXX},
+  journal={XXX},
+  year={2024}
+}
+```
+
+## 许可证
+
+本项目采用 MIT 许可证。详见 [LICENSE](LICENSE) 文件。
+
+## 联系方式
+
+如有任何问题，请通过以下方式联系：
+- 邮件：xxx@xxx.com
+- Issues：请在GitHub上提交issue
+
+## 致谢
+
+感谢以下项目和工具：
+- PyTorch
+- PyTorch Geometric
+- Kaggle数据集提供方
+
+## 更新日志
+
+- 2024.01: 首次发布
+- 2024.02: 添加数据预处理脚本
+- 2024.03: 更新实验结果
+
+## 贡献指南
+
+欢迎贡献代码！请查看 [CONTRIBUTING.md](CONTRIBUTING.md) 了解详情。
+
+---
+注：这是一个研究项目，如果您计划将其用于生产环境，请确保进行充分的测试和适配。
